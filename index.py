@@ -658,8 +658,14 @@ print(int(vol_cylinder(3.142,3.5,2)))
 
 '''Write different functions which take lists. They should calculate_mean, calculate_median, calculate_mode, calculate_range, calculate_variance, calculate_std (standard deviation).'''
 
+'''what is a module-a module is a file containing a set of codes or a set of codes or a set of function which can be included to an application. a module could be a file containing  a single variable ,a function or a big code base'''
 
+import modules
+print (modules.generate_tax(2500,15))
 
+from modules import generate_tax as my_tax
+print(my_tax(2500,15))
 
-
+from modules import my_name as my_fullname
+print(my_fullname(age=90,firstname='praise',secondname='micheal'))
 

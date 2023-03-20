@@ -656,7 +656,7 @@ print(int(vol_cylinder(3.142,3.5,2)))
 
 
 
-'''Write different functions which take lists. They should calculate_mean, calculate_median, calculate_mode, calculate_range, calculate_variance, calculate_std (standard deviation).'''
+
 
 '''what is a module-a module is a file containing a set of codes or a set of codes or a set of function which can be included to an application. a module could be a file containing  a single variable ,a function or a big code base'''
 
@@ -668,4 +668,214 @@ print(my_tax(2500,15))
 
 from modules import my_name as my_fullname
 print(my_fullname(age=90,firstname='praise',secondname='micheal'))
+
+
+'''from modules import print_pattern as printer
+print(printer(5))'''
+
+
+'''
+Import Built-in Modules
+Like other programming languages we can also import modules by importing the file/function using the key word import. Let's import the common module we will use most of the time. Some of the common built-in modules: math, datetime, os,sys, random, statistics, collections, json,re'''
+
+#math module
+import math
+print(math.pi)
+print(math.ceil(math.sqrt(243)))
+print(math.pow(2,4))
+
+# whne using more than one mth midule
+from math import pi,ceil,sqrt,radians,cos
+print(pi)
+print(sqrt(450))
+print(ceil(234/21))
+print(radians(7))
+print(cos(60))
+
+from random import random,randbytes,randint,randrange
+print(random())
+print(randint(2,6))
+print(randrange(40))
+
+'''Write different functions which take lists. They should calculate_mean, calculate_median, calculate_mode, calculate_range, calculate_variance, calculate_std (standard deviation).'''
+
+from statistics import mean,median,mode,variance,stdev
+age = [20,15,35,40,1,28,30,20]
+def calculate_mean():
+    return mean(age)  
+print(calculate_mean())
+
+def calc_median():
+    return median(age)
+print(calc_median())
+
+def calc_mode():
+    return mode(age)
+print(calc_mode())
+
+def calc_var():
+    return variance(age)
+print(calc_var())
+
+def calc_std():
+    return stdev(age)
+print(calc_std())
+
+def calc_range():
+    new_age=sorted(age)
+    print(new_age)
+    new_age = new_age[-1] - new_age[0]
+    print(f'The range of the ages is {new_age}')
+calc_range()
+
+
+import random,string
+def OTP_generator():
+    chart_num = int(input('Enter a number: '))
+    num_OTPs = int(input('Number of otps to generate: '))
+    for i in range (chart_num+1):
+        OTP = ''.join(random.choices(string.ascii_uppercase+string.digits+string.ascii_lowercase,k=num_OTPs))
+        print(f'Your OTP is {OTP}')
+OTP_generator()
+
+'''
+Regular Expressions
+A regular expression or RegEx is a special text string that helps to find patterns in data. A RegEx can be used to check if some pattern exists in a different data type. To use RegEx in python first we should import the RegEx module which is called re.
+
+The re Module
+After importing the module we can use it to detect or find patterns.
+
+import re
+'''
+import re
+# re.match()
+txt = "i love techstudio and Python"
+match_it = re.match('studio',txt[11:])
+print(match_it)
+
+# re.search
+search_it = re.search('python',txt,re.I)
+print(search_it)
+
+# re.findall
+txt2='Python is the most beautiful language that a human being has ever created.I recommend python for a first programming language.'
+find_py = re.findall('python',txt2,re.I)
+print(find_py)
+
+# re.sub
+# sub_py = re.sub()
+
+'''Assignment
+Change the dictionary "person_dict" to a JSON "person_json". 
+a) Print(person_dict)
+b) Print(type(person_dict))
+c) Print(person_json)
+d) Print(type(person_json))'''
+person_dict = {
+    "name": "Blard",
+    "country": "Nigeria",
+    "city": "Lagos",
+    "skills": ["JavaScript", "React", "Python"]
+}
+import json
+print(person_dict)
+print(type(person_dict))
+# to change dictionary to json you hve to use json.dumps()
+person_json=json.dumps(person_dict)
+print(person_json)
+print(type(person_json))
+# to change json back to dictionary  you use json.loads()
+new_person =json.loads(person_json)
+print(new_person,type(new_person))
+
+
+# OOP-CLASSES-Python is an object oriented programming language,with its properties and methods. everything in python is a object of a corresponding built-in class.when we instantiate a class to create an  object,however ther class defines the attributes and behaVIOUR OF THE OBJECT.creating a class-to create a class,we use the class keyword.
+
+
+# class classname:
+# codes to run
+
+class Person:
+    pass
+print(Person)
+
+person1 = Person()
+print(person1)
+
+class Person:
+    def __init__(self,name,age,city,country):
+        self.name = name
+        self.age = age
+        self.city = city
+        self.country = country
+        self.stacks=[]
+        
+    def person_info(self,gender,income):
+        self.gender=gender
+        self.income=income
+        return f"My name is {self.name} i am {self.age} years old,i am from {self.city} state in {self.country} my stacks are {s.stacks} my gender is {gender} and i earn {income}  "
+    def add_stacks(self,stack):
+        self.stacks.append(stack)
+s=Person("Praise",34,"lagos","Nigeria")
+s.add_stacks('HTML')
+print(s.stacks)
+more_stacks=['javascript','react','python','django']
+s.stacks.extend(more_stacks)   
+print(s.person_info('others',1200)) 
+
+
+'''class inheritance using the super()
+the super() built in function gives child  class acess to the main /parent propersties.however
+when we add the init() function,the child class will no longer inherit the parents init() function'''
+class smallperson(Person):
+    def __init__(self, name, age, city, country,job):
+        self.job= job
+        super().__init__(name, age, city, country)
+        
+    def new_info(self):
+        return f"i am a {self.job},my stacks is {r.stacks}"    
+    pass
+
+r=smallperson("jessic",45,"UK","scotland","developer")
+r.add_stacks("botega")
+print(r.person_info('female',1400))
+print(r.new_info())
+
+
+''' Task
+1)create a class 'Bnk account' with constructor that two parameters name and money
+2)create inside the bankaccount class three methods one for 'deposit
+,'withdraw.'checkbalace'
+3)create an instance of bankacct i.e b1= bankaccoount("blard",400)
+4)print (b1.withdraw(500)).nb:this should show a message"insufficiet funds" since 400<400
+5)deposit 500 usin b1.deposit(500) method and check the available balance using print(b1.checkbalance() method)
+'''
+
+
+class BankAccount:
+    def __init__(self,name,money):
+        self.name = name
+        self.money= money
+    def Deposit(self,new_money):
+        self.money = self.money+new_money
+        # withdarw method 
+    def Withdraw(self,inputedbal):
+        if self.money > inputedbal:
+            self.money = self.money-inputedbal
+            return self.money
+        else:
+            return f"Insufficient fund!"
+        
+    def Checkbalance(self):
+        return self.money
+        
+        
+        
+        
+b1=BankAccount("Blard",400)
+print(b1.money)
+b1.Deposit(500)
+print(b1.money)
+print(b1.Withdraw(600))
+print(b1.Checkbalance())
 
